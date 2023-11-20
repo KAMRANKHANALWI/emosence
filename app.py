@@ -10,7 +10,7 @@ import numpy as np
 import joblib
 
 # Import Model/Pipeline
-pipe_lr = joblib.load(open("/Users/kamrankhanalwi/Desktop/emosence/App/emotion_classifier2.pkl", "rb"))
+pipe_lr = joblib.load(open("/Users/kamrankhanalwi/Desktop/emosence/emosence/emotion_classifier2.pkl", "rb"))
 
 # Functions
 # Fxn to predict emotions 
@@ -61,7 +61,7 @@ emotions_emoji_dict = {
 def main(): 
     st.title("Emosence: Unveiling Emotions in Text")
     # st.title("Emotion Classifier App")
-    menu = ["Home", "Classifier", "Know Your Emotion"]
+    menu = ["Home", "Classifier", "Emotion Dictionary"]
     choice = st.sidebar.selectbox("Menu", menu)
 
     if choice == "Classifier":
@@ -97,12 +97,13 @@ def main():
 
                     fig = alt.Chart(proba_df_clean).mark_bar().encode(x='emotions', y='probability', color='emotions')
                     st.altair_chart(fig, use_container_width=True)
-    elif choice == "Know Your Emotion":
-        st.header("Know Your Emotions-Emoji")
-
+    elif choice == "Emotion Dictionary":
+        st.divider()
+        st.header(''' :grey[**Emotions Emoji**] ''')
+        st.divider()
+        st.subheader("Happiness : 😄")
         st.subheader("Love : ❤️")
         st.subheader("Anger : 😡")
-        st.subheader("Happiness : 😄")
         st.subheader("Sad : 😔")
         st.subheader("Joy : 😂")
         st.subheader("Fear : 😨")
@@ -121,8 +122,8 @@ def main():
     else:
         # st.subheader("About")
         st.subheader("Welcome to Emosence, where the symphony of words resonates with emotions! 🌟")
-        st.write("In the dynamic realm of digital communication, Emosence stands as a beacon of emotional intelligence, bringing forth the power to decipher and amplify the emotional nuances within written expressions. This cutting-edge app seamlessly integrates natural language processing and machine learning to decode the sentiments behind your words.")
-        
+        st.write("In the digital realm where communication often lacks the depth of face-to-face interactions, EmoDetect emerges as a powerful tool to decode the emotional nuances within written expressions. This innovative app harnesses the synergy of natural language processing and machine learning, placing the ability to understand and interpret emotions right at your fingertips.")
+        st.divider()
         st.header("Key Features:")
 
         st.subheader("📚 Text-to-Emotion Transformation: ")
