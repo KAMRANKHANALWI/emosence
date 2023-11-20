@@ -10,7 +10,7 @@ import numpy as np
 import joblib
 
 # Import Model/Pipeline
-pipe_lr = joblib.load(open("/Users/kamrankhanalwi/Desktop/emosence/App/Models/emotion_classifier2.pkl", "rb"))
+pipe_lr = joblib.load(open("/Users/kamrankhanalwi/Desktop/emosence/App/emotion_classifier2.pkl", "rb"))
 
 # Functions
 # Fxn to predict emotions 
