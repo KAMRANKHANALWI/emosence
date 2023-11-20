@@ -10,7 +10,7 @@ import numpy as np
 import joblib
 
 # Import Model/Pipeline
-pipe_lr = joblib.load(open("/Users/kamrankhanalwi/Desktop/project_2/App/Models/emotion_classifier.pkl", "rb"))
+pipe_lr = joblib.load(open("/Users/kamrankhanalwi/Desktop/project_2 copy/App/Models/emotion_classifier2.pkl", "rb"))
 
 # Functions
 # Fxn to predict emotions 
@@ -24,15 +24,48 @@ def get_prediction_proba(docx):
     return results
 
 # Emoji Dictonary
-emotions_emoji_dict = {'anger' : '😡', 'fear' : '😨', 'joy' : '😂', 'love' : '❤️', 'sadness' : '😔', 'surprise' : '😱'}
+# emotions_emoji_dict = {'anger' : '😡', 'fear' : '😨', 'joy' : '😂', 'love' : '❤️', 'sadness' : '😔', 'surprise' : '😱'}
+
+emotions_emoji_dict = {
+                        'anger' : '😡', 
+                        'boredom' : '😑', 
+                        'disgust' : '🤮', 
+                        'empty' : '🫙', 
+                        'enthusiasm' : '🤩',
+                        'fear' : '😨',
+                        'fun': '🥳', 
+                        'happiness' : '😄', 
+                        'hate' : '🤬', 
+                        'joy' : '😂', 
+                        'love' : '❤️', 
+                        'neutral' : '😐', 
+                        'relief' : '😮‍💨',
+                        'sad' : '😔', 
+                        'shame' : '😅', 
+                        'surprise' : '😱', 
+                        'worry' : '🤔'
+                    }
+
+# emotions_emoji_dict = {
+#     'anger' : '😡',
+#     'disgust' : '🤮', 
+#     'fear' : '😨',
+#     'joy' : '😂',
+#     'love' : '❤️',
+#     'neutral' : '😐',
+#     'sadness' : '😔',
+#     'shame' : '😅', 
+#     'surprise' : '😱'
+#     }
 
 def main(): 
-    st.title("Emotion Classifier App")
-    menu = ["Home", "Monitor", "About"]
+    st.title("Emosence: Unveiling Emotions in Text")
+    # st.title("Emotion Classifier App")
+    menu = ["Home", "Classifier", "Know Your Emotion"]
     choice = st.sidebar.selectbox("Menu", menu)
 
-    if choice == "Home":
-        st.subheader("Home-Emotion In Text")
+    if choice == "Classifier":
+        st.subheader("Emotion Classifier")
 
         with st.form(key='emotion_clf_form'):
             raw_text = st.text_area("Type Here")
@@ -64,13 +97,45 @@ def main():
 
                     fig = alt.Chart(proba_df_clean).mark_bar().encode(x='emotions', y='probability', color='emotions')
                     st.altair_chart(fig, use_container_width=True)
+    elif choice == "Know Your Emotion":
+        st.header("Know Your Emotions-Emoji")
 
-    elif choice == "Monitor":
-        st.subheader("Monitor App")
+        st.subheader("Love : ❤️")
+        st.subheader("Anger : 😡")
+        st.subheader("Happiness : 😄")
+        st.subheader("Sad : 😔")
+        st.subheader("Joy : 😂")
+        st.subheader("Fear : 😨")
+        st.subheader("Neutral : 😐")
+        st.subheader("Worry : 🤔")
+        st.subheader("Relief : 😮‍💨")
+        st.subheader("Boredom : 😑")
+        st.subheader("Fun : 🥳")
+        st.subheader("Disgust : 🤮")
+        st.subheader("Hate : 🤬")
+        st.subheader("Empty : 🫙")
+        st.subheader("Enthusiasm : 🤩")
+        st.subheader("Shame : 😅")
+        st.subheader("Surprise : 😱")
 
     else:
-        st.subheader("About")
+        # st.subheader("About")
+        st.subheader("Welcome to Emosence, where the symphony of words resonates with emotions! 🌟")
+        st.write("In the dynamic realm of digital communication, Emosence stands as a beacon of emotional intelligence, bringing forth the power to decipher and amplify the emotional nuances within written expressions. This cutting-edge app seamlessly integrates natural language processing and machine learning to decode the sentiments behind your words.")
+        
+        st.header("Key Features:")
 
+        st.subheader("📚 Text-to-Emotion Transformation: ")
+        st.write("Embark on a journey where your words transcend the ordinary. Emosence employs advanced machine learning algorithms, including the enchanting capabilities of scikit-learn's CountVectorizer, to analyze and illuminate the emotional palette within your text.")
+
+        st.subheader("🧠 Intelligent Emotion Recognition:")
+        st.write("Delve into the rich tapestry of emotions. Emosence utilizes sophisticated natural language processing techniques to precisely recognize a spectrum of emotions, from exuberant joy to poignant sadness.")
+
+        st.subheader("🔄 Real-Time Interaction:")
+        st.write("Experience the magic of emotions evolving in real-time as you type or modify your text. Emosence provides instantaneous feedback, allowing you to witness the fluidity of emotions within your words.")
+
+        st.subheader("🌐 Versatility Across Text Genres:")
+        st.write("From heartfelt messages to professional communications, Emosence seamlessly adapts to diverse text genres. Its versatility ensures a nuanced emotional analysis across different contexts and writing styles.")
 
 
 if __name__ == '__main__':
